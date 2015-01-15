@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2015-02-03 12:01-00" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oZ5-DC-84j">
+                                <rect key="frame" x="52" y="285" width="496" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="m5C-fJ-1YE"/>
+                                </connections>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZD0-Ct-1WJ" customClass="WKDatePicker">
+                                <rect key="frame" x="0.0" y="20" width="600" height="233"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZD0-Ct-1WJ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="0jg-IS-AHw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZD0-Ct-1WJ" secondAttribute="trailing" constant="-16" id="2ol-VN-ebf"/>
+                            <constraint firstItem="oZ5-DC-84j" firstAttribute="top" secondItem="ZD0-Ct-1WJ" secondAttribute="bottom" constant="32" id="88V-yD-xbb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oZ5-DC-84j" secondAttribute="trailing" constant="36" id="8Dq-q6-Oag"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="oZ5-DC-84j" secondAttribute="bottom" constant="285" id="EoV-SX-nch"/>
+                            <constraint firstItem="ZD0-Ct-1WJ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="iAH-Qu-7YQ"/>
+                            <constraint firstItem="ZD0-Ct-1WJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="uSk-Nl-koQ"/>
+                            <constraint firstItem="oZ5-DC-84j" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="36" id="vql-vq-IwP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="iAH-Qu-7YQ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="pickerView" destination="ZD0-Ct-1WJ" id="Dcn-Yq-HHX"/>
+                        <outlet property="textField" destination="oZ5-DC-84j" id="DT4-mU-eun"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
