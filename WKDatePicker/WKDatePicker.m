@@ -25,7 +25,7 @@ typedef enum{
 
 @property (nonatomic, strong) NSMutableArray *monthArr;
 
-//大月
+
 @property (nonatomic, strong) NSMutableArray *bigMonthDayArr;
 
 @property (nonatomic, strong) NSMutableArray *hourArr;
@@ -133,20 +133,7 @@ typedef enum{
         minute++;
     }
 
-//    NSString *yearPath = [[NSBundle mainBundle] pathForResource:@"year.plist" ofType:nil];
-//    _yearArr = [NSArray arrayWithContentsOfFile:yearPath];
-//    
-//    NSString *monthPath = [[NSBundle mainBundle] pathForResource:@"month.plist" ofType:nil];
-//    _monthArr = [NSArray arrayWithContentsOfFile:monthPath];
-//    
-//    NSString *dayPath = [[NSBundle mainBundle] pathForResource:@"bigMonthDay.plist" ofType:nil];
-//    _bigMonthDayArr = [NSArray arrayWithContentsOfFile:dayPath];
-//    
-//    NSString *hourPath = [[NSBundle mainBundle] pathForResource:@"hour.plist" ofType:nil];
-//    _hourArr = [NSArray arrayWithContentsOfFile:hourPath];
-//    
-//    NSString *minutePath = [[NSBundle mainBundle] pathForResource:@"minute.plist" ofType:nil];
-//    _minuteArr = [NSArray arrayWithContentsOfFile:minutePath];
+
     
     _dataSource = [NSMutableArray arrayWithObjects:_yearArr, _monthArr, _bigMonthDayArr, _hourArr, _minuteArr, nil];
 }
@@ -155,13 +142,11 @@ typedef enum{
 
 
 #pragma mark - 数据源
-// returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 5;
 }
 
-// returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (component == 0) {
@@ -278,17 +263,16 @@ typedef enum{
 
 - (void)judgeIsNeedMoveDayComponent:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    //获取当前选中的行（年、月、日）
     NSInteger selectedRowYear = [pickerView selectedRowInComponent:kYearComponent];
     NSInteger selectedRowMonth = [pickerView selectedRowInComponent:kMonthComponent];
     NSInteger selectedRowDay = [pickerView selectedRowInComponent:kDayComponent];
-    //年
+
     NSString *yearStr = (NSString *)_yearArr[selectedRowYear% [_dataSource[kYearComponent] count]];
     
-    //月份
+
     NSString *monthStr = (NSString *)_monthArr[selectedRowMonth % [_dataSource[kMonthComponent] count]];
     
-    //天
+
     NSString *dayStr = (NSString *)_bigMonthDayArr[selectedRowDay % [_dataSource[kDayComponent] count]];
     
     
@@ -306,22 +290,22 @@ typedef enum{
         case 8:
         case 10:
         case 12:
-            //什么都不用处理
+
             break;
         case 4:
         case 6:
         case 9:
         case 11:
-            //最多滚动到30
+
             if (day == 31) {
                 [pickerView selectRow:selectedRowDay / 31 * 31 + 29 inComponent:kDayComponent animated:YES];
             }
             break;
         case 2:
-            //闰年滚动到29、不是闰年滚动到28
-            if ([self judgeIsLeapYear:year]) {//闰年
+
+            if ([self judgeIsLeapYear:year]) {
                 if (day > 29) {
-                    //获取当前选中的行
+
                     [pickerView selectRow:selectedRowDay / 31 * 31 + 28 inComponent:kDayComponent animated:YES];
                 }
             }else{
@@ -358,11 +342,11 @@ typedef enum{
 
 - (void)setTime:(NSString *)timeStr
 {
-    //分割字符串
+
     NSCharacterSet *cSet = [NSCharacterSet characterSetWithCharactersInString:@"- :"];
     NSArray *timeArr = [timeStr componentsSeparatedByCharactersInSet:cSet];
     
-    //滚动时间选择器
+
     NSString *yearStr = [(NSString *)timeArr[0] stringByAppendingString:@"年"];
     NSString *monthStr = [(NSString *)timeArr[1] stringByAppendingString:@"月"];
     NSString *dayStr = [(NSString *)timeArr[2] stringByAppendingString:@"日"];
